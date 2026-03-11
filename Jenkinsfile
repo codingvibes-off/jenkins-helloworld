@@ -1,11 +1,12 @@
 node {
+    def app
     stage('Clone') {
-        git 'https://github.com/priximmo/jenkins-helloworld.git'
+        checkout scm 
     }
     stage('Build') {
-        sh 'javac Main.java'
+        sh '/usr/local/bin/docker build -t xavki/nginx .'
     }
-    stage('Run') {
-        sh 'java Main'
+    stage('Test Image') {
+        sh '/usr/local/bin/docker run -d -p 8080:80 --name nginx-test xavki/nginx'
     }
 }
