@@ -14,7 +14,7 @@ node {
     }
     stage('Test with Curl') {
         steps {
-            sh 'curl http://localhost:8080'
+            sh 'curl localhost'
         }
     }
 }
